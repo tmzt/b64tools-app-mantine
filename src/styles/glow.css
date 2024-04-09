@@ -1,0 +1,26 @@
+
+.glowable {
+    /* Enable glow keyframe */
+    @keyframes enableGlow {
+        0% {
+            box-shadow: 0 0 0 0 hsla(207, 69%, 77%, 0);
+        }
+        50% {
+            box-shadow: 0 0 5px 5px hsla(207, 69%, 77%, 0.5);
+        }
+        100% {
+            box-shadow: 0 0 0 0 hsla(207, 69%, 77%, 0);
+        }
+    }
+
+    /* Default, no glow */
+    text-shadow: none;
+    
+}
+
+.glowable.glow {
+    /* background: red !important; */
+    outline: none;
+    animation: enableGlow 1s ease-in-out !important;
+    /* box-shadow: 0 0 10px 10px hsla(207, 69%, 77%, 0.5); */
+}
