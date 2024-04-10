@@ -1,53 +1,28 @@
+
 import React, { useEffect } from "react";
 
+import { Stack, Text, TextInput, Title } from "@mantine/core";
 
-import { Stack, Title, Text, Input, JsonInput, TextInput } from "@mantine/core";
-
+import { CopyInput } from "../components/CopyInput";
 import { Editor } from "../components/Editor";
 import { ReverseButton } from "../components/Reverse";
-import { CopyInput } from "../components/CopyInput";
-import { SvgToBase64Codec } from "../conv/text/codecs/svgToBase64";
-import { PrettyPrintXmlCodec } from "../conv/text/codecs/prettyPrintXml";
+import { Viewer } from "../components/Viewer";
+
 import { makeCodecStack } from "../conv/text/codecs/codecStack";
 import { completeCodec } from "../conv/text/codecs/default";
-import { Viewer } from "../components/Viewer";
-import { toJsxCode, toTsxCode } from '../conv/text/codecs/svgToReact';
+import { PrettyPrintXmlCodec } from "../conv/text/codecs/prettyPrintXml";
+import { SvgToBase64Codec } from "../conv/text/codecs/svgToBase64";
+
+import { highlightSvg } from "../conv/text/util/highlighting";
 import { minimizeXml } from "../conv/text/util/minimize";
 import { svgToJsxComponent, svgToTsxComponent } from "../conv/text/util/svgToJs";
-import { highlightSvg } from "../conv/text/util/highlighting";
 
 
-// const base64DataUriEncode = (data: string) => {
-//     return `data:image/svg+xml;base64,${btoa(data)}`;
-// }
+const defaultSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <circle class="cls-1" cx="50" cy="50" r="40" style="fill: blue; stroke: red;" />
+</svg>`;
 
 export const SvgToDataURI = () => {
-
-    //     const defaultSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
-    // <rect x="10" y="10" width="80" height="80" fill="blue" />
-    // </svg>`;
-
-
-//     const defaultSvg = `
-// <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-//     <style>
-//     .cls-1 {
-//         fill: #f00;
-//     }
-//     </style>
-//     <circle class="cls-1" cx="50" cy="50" r="40"/>
-// </svg>
-// `;
-
-    const defaultSvg = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle class="cls-1" cx="50" cy="50" r="40" style="fill: blue; stroke: red;" />
-</svg>
-`;
-
-    // const highlightSvg: HighlightFunc = (code: string) => highlight(code, languages.markup, 'svg');
-    // const highlightJsx: HighlightFunc = (code: string) => highlight(code, languages.jsx, 'jsx');
-    // const highlightTsx: HighlightFunc = (code: string) => highlight(code, languages.tsx, 'tsx');
 
     const svgCodec = completeCodec(SvgToBase64Codec);
     const prettyPrintCodec = completeCodec(PrettyPrintXmlCodec);
@@ -59,16 +34,14 @@ export const SvgToDataURI = () => {
 
     const codec = makeCodecStack(...codecs);
 
-    // const codec = PrettyPrintXmlCodec;
-
     const [dataUri, setDataUri] = React.useState<string>('');
     const [minimizedSvg, setMinimizedSvg] = React.useState<string>('');
     const [reactJsx, setReactJsx] = React.useState<string>('');
     const [reactTsx, setReactTsx] = React.useState<string>('');
 
     const update = async (buffer: string) => {
-        const dataUriValue = svgCodec.encode(buffer);
         const minimizedSvgValue = minimizeXml(buffer);
+        const dataUriValue = svgCodec.encode(minimizedSvgValue);
 
         setDataUri(dataUriValue);
         setMinimizedSvg(minimizedSvgValue);
@@ -81,19 +54,11 @@ export const SvgToDataURI = () => {
     };
 
     const onChange = (buffer: string) => {
-        // setDataUri(svgCodec.encode(buffer));
-        // setMinimizedSvg(prettyPrintCodec.encode(buffer));
-        // // setReactJsx(`const SvgComponent = () => ${toJsxCode(buffer)}`);
-        // // setReactTsx(`const SvgComponent: React.FC = () => ${toTsxCode(buffer)}`);
-        // setReactJsx(await toJsxCode(buffer));
-        // setReactTsx(await toTsxCode(buffer));
         update(buffer)
             .then(() => {
                 console.info('SvgToDataUri.onChange: updated');
             });
     };
-
-    const { encode, decode } = completeCodec(codec);
 
     useEffect(() => {
         update(defaultSvg);
