@@ -12,7 +12,7 @@ import { Root } from './pages/Root';
 import { Placeholders } from './pages/Placeholders';
 import { SvgToDataUri } from './pages/SvgToDataUri';
 import { ImageToDataUri } from './pages/ImageToDataUri';
-import { Base64IOLogo } from './components/Logo2';
+import { Base64IOLogo } from './components/Logo';
 import { ContentSwitch } from './content/Switch';
 
 
