@@ -6,7 +6,7 @@ import { fromHtmlIsomorphic } from 'hast-util-from-html-isomorphic';
 import { toJs as estreeToJs, jsx } from 'estree-util-to-js';
 
 import { ToHastOptions } from '@svgx/core';
-import { minimize } from './minimize';
+import { minimizeXml } from './minimize';
 
 
 // const HTML_JUNK = /(<><html\s*\/><head\s*\/><body\s*\/>)|(<\/body\s*><\/html\s*><\/>)/;
@@ -16,7 +16,7 @@ const SEMI = /;$/;
 
 export const svgToJs = async (input: string, typescript = false) => {
 
-    input = minimize(input);
+    input = minimizeXml(input);
 
     const hastOptions: Required<ToHastOptions> = {
         optimize: false,
@@ -42,7 +42,7 @@ export const svgToJs = async (input: string, typescript = false) => {
     let { value } = res;
 
     // Remove extra whitespace
-    value = minimize(value);
+    value = minimizeXml(value);
 
     // Strip junk
     value = value

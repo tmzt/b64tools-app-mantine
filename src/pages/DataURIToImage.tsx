@@ -1,8 +1,7 @@
 
 import React from "react";
 
-
-export const ImageToDataURI = () => {
+export const DataURIToImage = () => {
     return <>
     </>;
 };

@@ -1,6 +1,6 @@
 
 
-export const minimize = (input = '') => {
+export const minimizeXml = (input = '') => {
     return input
         .replace(/\s+/g, ' ')
         // Also remove all whitespace around tags

@@ -1,0 +1,16 @@
+
+/* .mantine-AppShell-aside pre code {
+    max-width: 6rem !important;
+} */
+
+.aside-content pre code {
+    max-width: 6rem !important;
+}
+
+pre[class*="language-"] {
+    margin-bottom: 1em !important;
+}
+
+code[class*="language-"] {
+    white-space: pre-line;
+}

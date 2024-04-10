@@ -12,7 +12,7 @@ import { makeCodecStack } from "../conv/text/codecs/codecStack";
 import { completeCodec } from "../conv/text/codecs/default";
 import { Viewer } from "../components/Viewer";
 import { toJsxCode, toTsxCode } from '../conv/text/codecs/svgToReact';
-import { minimize } from "../conv/text/util/minimize";
+import { minimizeXml } from "../conv/text/util/minimize";
 import { svgToJsxComponent, svgToTsxComponent } from "../conv/text/util/svgToJs";
 import { highlightSvg } from "../conv/text/util/highlighting";
 
@@ -21,7 +21,7 @@ import { highlightSvg } from "../conv/text/util/highlighting";
 //     return `data:image/svg+xml;base64,${btoa(data)}`;
 // }
 
-export const SvgToDataUri = () => {
+export const SvgToDataURI = () => {
 
     //     const defaultSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">
     // <rect x="10" y="10" width="80" height="80" fill="blue" />
@@ -68,7 +68,7 @@ export const SvgToDataUri = () => {
 
     const update = async (buffer: string) => {
         const dataUriValue = svgCodec.encode(buffer);
-        const minimizedSvgValue = minimize(buffer);
+        const minimizedSvgValue = minimizeXml(buffer);
 
         setDataUri(dataUriValue);
         setMinimizedSvg(minimizedSvgValue);

@@ -1,7 +1,11 @@
 import React from "react";
 
 import { Text } from "@mantine/core";
-import { DataURI } from "./DataURI";
+// import { DataURI } from "./DataURI";
+import DataURI from "./DataURI.md";
+
+import "../styles/markdown.css";
+
 
 export const ContentSwitch = ({ uri }: { uri?: string }) => {
     const locPath = ('object' === typeof window) ? window.location.pathname : '';
@@ -9,7 +13,7 @@ export const ContentSwitch = ({ uri }: { uri?: string }) => {
 
     const trimmedPath = curPath.replace(/\/+$/, '');
 
-    const notFound = () => <Text>Page not found</Text>;
+    const notFound = () => <></>;
 
     if (!trimmedPath?.length) {
         return notFound();

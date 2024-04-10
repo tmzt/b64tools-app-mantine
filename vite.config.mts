@@ -4,6 +4,10 @@ import react from '@vitejs/plugin-react';
 import alias from '@rollup/plugin-alias';
 import virtual from '@rollup/plugin-virtual';
 
+import { mdx } from '@cyco130/vite-plugin-mdx';
+
+import remarkPrism from 'remark-prism';
+
 
 const APP_ENV = process.env.APP_ENV || 'development';
 
@@ -40,6 +44,11 @@ const transformHtmlPlugin = (data: {[k: string]: string}) => ({
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
+        mdx({
+            remarkPlugins: [
+                remarkPrism,
+            ],
+        }),
         react(),
         transformHtmlPlugin({ baseHref: baseHref(), baseHrefRel: '/' }),
         // alias({
@@ -51,7 +60,7 @@ export default defineConfig({
     ],
     define: {
         'process.env': process.env,
-        'process.cwd': () => '',
+        // 'process.cwd': () => '',
     },
     mode: APP_ENV,
     build: {

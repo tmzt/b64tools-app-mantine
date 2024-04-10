@@ -1,7 +1,7 @@
 import { CompleteExtendedTextCodec, TextCodec } from "../types";
 
 
-const toDataUri = (input: string) => {
+export const toDataUri = (input: string) => {
     try {
         return `data:image/svg+xml;base64,${btoa(input)}`;
     } catch (e) {
@@ -10,7 +10,7 @@ const toDataUri = (input: string) => {
     }
 };
 
-const fromDataUri = (input: string) => {
+export const fromDataUri = (input: string) => {
     try {
         return atob(input.replace(/^data:image\/svg\+xml;base64,/, ''));
     } catch (e) {

@@ -1,7 +1,7 @@
 import { CompleteExtendedTextCodec, TextCodec } from "../types";
 
 import * as XmlFormatter from 'xml-formatter';
-import { minimize } from "../util/minimize";
+import { minimizeXml } from "../util/minimize";
 
 
 export const prettyPrintXml = (input = '') => {
@@ -37,7 +37,7 @@ export const PrettyPrintXmlCodec: TextCodec = {
 
     encode: (input: string) => {
         console.info('PrettyPrintXmlCodec.encode: input:', input);
-        const encoded = minimize(input);
+        const encoded = minimizeXml(input);
         console.info('PrettyPrintXmlCodec.encode: encoded:', encoded);
         return encoded;
     },
