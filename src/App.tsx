@@ -1,26 +1,26 @@
 
 import React from 'react';
 
-import { AppShell, Burger, Group, NavLink, Skeleton, AppShellNavbar, Text, ScrollArea, Stack } from '@mantine/core';
+import { AppShell, Burger, Group, NavLink, ScrollArea, Stack, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import { Notifications } from '@mantine/notifications';
 
-import { BrowserRouter, Link, Outlet, Route, Router, RouterProvider, Routes, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import { BrowserRouter, Link, Outlet, Route, Routes } from 'react-router-dom';
 
-import { Root } from './pages/Root';
-import { Placeholders } from './pages/Placeholders';
-import { SvgToDataURI } from './pages/SvgToDataURI';
+import { AnalyzeDataURI } from './pages/AnalyzeDataURI';
+import { DataURIToImage } from './pages/DataURIToImage';
+import Home from './pages/Home.md';
 import { ImageToDataURI } from './pages/ImageToDataURI';
+import { Placeholders } from './pages/Placeholders';
+import { Root } from './pages/Root';
+import { SvgToDataURI } from './pages/SvgToDataURI';
 import { WavyTextPage } from './pages/WavyText';
 
 import { Base64IOLogo } from './components/Logo';
+
 import { ContentSwitch } from './content/Switch';
 
-import Home from './pages/Home.md';
 import Licenses from './gen/licenses.md';
-import { DataURIToImage } from './pages/DataURIToImage';
-import { AnalyzeDataURI } from './pages/AnalyzeDataURI';
 
 
 const logoStyle = {
@@ -82,20 +82,6 @@ export const Layout = () => {
     </AppShell>
   );
 };
-
-// const AppRouter = () => (
-//   <BrowserRouter>
-//     <Routes>
-//       <Route element={<Layout />}>
-//         <Route element={<Root />} />
-//         <Route path="/placeholders" element={<Placeholders />} />
-//         {/* <Route path="/svg-to-data-uri" element={<SvgToDataUri />} />
-//         <Route path="/png-to-data-uri" element={<PngToDataUri />} />
-//         <Route path="/analyze-data-uri" element={<AnalyzeDataUri />} /> */}
-//       </Route>
-//     </Routes>
-//   </BrowserRouter>
-// );
 
 export const App = () => {
   return (
