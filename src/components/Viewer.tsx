@@ -87,7 +87,7 @@ export const Viewer = (props: ViewProps) => {
     return (
         <Stack>
             <Input.Wrapper label={label}>
-                <Input component={Highlighted} style={viewerDivStyles} rightSection={<CopyActionButton />} />
+                <Input component={Highlighted} style={viewerDivStyles} rightSection={<CopyActionButton value={decoded} />} />
             </Input.Wrapper>
         </Stack>
     )

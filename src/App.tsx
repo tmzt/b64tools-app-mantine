@@ -1,7 +1,7 @@
 
 import React from 'react';
 
-import { AppShell, Burger, Group, NavLink, Skeleton, AppShellNavbar } from '@mantine/core';
+import { AppShell, Burger, Group, NavLink, Skeleton, AppShellNavbar, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { MantineLogo } from '@mantinex/mantine-logo';
 import { Notifications } from '@mantine/notifications';
@@ -12,7 +12,15 @@ import { Root } from './pages/Root';
 import { Placeholders } from './pages/Placeholders';
 import { SvgToDataUri } from './pages/SvgToDataUri';
 import { ImageToDataUri } from './pages/ImageToDataUri';
+import { Base64IOLogo } from './components/Logo2';
+import { ContentSwitch } from './content/Switch';
 
+
+const logoStyle = {
+  height: '70px',
+  width: '225px',
+  paddingBottom: '5px',
+};
 
 export const Layout = () => {
   const [opened, { toggle }] = useDisclosure();
@@ -29,7 +37,8 @@ export const Layout = () => {
       <AppShell.Header>
         <Group h="100%" px="md">
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-          <MantineLogo size={30} />
+          {/* <MantineLogo size={30} /> */}
+          <Base64IOLogo style={logoStyle} />
         </Group>
       </AppShell.Header>
       <AppShell.Navbar p="md">
@@ -41,15 +50,20 @@ export const Layout = () => {
         {Array(15)
           .fill(0)
           .map((_, index) => (
-            <Skeleton key={index} h={28} mt="sm" animate={false} />
+            <Skeleton key={index} h={36} mt="sm" animate={false} />
           ))}
       </AppShell.Navbar>
       <AppShell.Main>
         {/* Aside is hidden on on md breakpoint and cannot be opened when it is collapsed */}
         <Outlet />
+        {/* TODO: Show aside content below page on md or smaller. */}
       </AppShell.Main>
-      <AppShell.Aside p="md">Aside</AppShell.Aside>
-      <AppShell.Footer p="md">Footer</AppShell.Footer>
+      <AppShell.Aside p="md">
+            <ContentSwitch />
+      </AppShell.Aside>
+      <AppShell.Footer p="md">
+        <Text fz="md" lh="md">&copy; 2024 Timothy Meade.</Text>
+      </AppShell.Footer>
     </AppShell>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 
 import { Stack, Title, Text, Input, JsonInput, TextInput } from "@mantine/core";
@@ -94,6 +94,10 @@ export const SvgToDataUri = () => {
     };
 
     const { encode, decode } = completeCodec(codec);
+
+    useEffect(() => {
+        update(defaultSvg);
+    }, []);
 
     return <>
         <Stack>

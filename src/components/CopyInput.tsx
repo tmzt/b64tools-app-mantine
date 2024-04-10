@@ -19,7 +19,7 @@ export const CopyInput = (props: TextInputProps & { value?: string }) => {
   const className = props.className ? `${props.className} glow` : 'glow';
 
   return useGlowOnChange((ref: RefObject<HTMLInputElement>) => {
-    const { label, ...rest } = props;
+    // const { label, ...rest } = props;
 
     // return (
     //     <Input.Wrapper label={label}>
@@ -31,7 +31,7 @@ export const CopyInput = (props: TextInputProps & { value?: string }) => {
 
     return (
       <Stack gap={10} mt={2}>
-        <TextInput ref={ref} {...rest} className={className} rightSection={copyAction} />
+        <TextInput ref={ref} {...props} className={className} rightSection={copyAction} />
       </Stack>
     )
 

@@ -7,7 +7,8 @@ import 'prismjs/themes/prism.css';
 import { EditorFunc, EditorValueProps, useCodecEditor } from "../conv/text/codec";
 import { TextCodec } from "../conv/text/types";
 import { nopCodec } from "../conv/text/codecs/default";
-import { Input, InputLabel, Stack } from "@mantine/core";
+import { Input, Stack } from "@mantine/core";
+import { HighlightFunc } from "../conv/text/util/highlighting";
 
 
 type EditorComponentProps = {
@@ -60,7 +61,7 @@ export type EditorProps = SafeEditorComponentProps & {
 export const Editor = (props: EditorProps) => {
     const { defaultValue = '', onChange = () => {}, codec = nopCodec, initialChange = true, ...rest } = props;
 
-    const value = props.value || defaultValue;
+    const startingValue = props.value || defaultValue;
 
     const editorHeight = (props?.styles?.minHeight || props?.styles?.height) || 'auto';
 
@@ -71,14 +72,14 @@ export const Editor = (props: EditorProps) => {
                     <EditorComponent
                         {...editorProps}
                         {...rest}
-                        value={value}
+                        // value={value}
                     />
                 </Input.Wrapper>
             </Stack>
         );
     };
 
-    const renderFunc = useCodecEditor(editorFunc, codec, { value, onChange, initialChange });
+    const res = useCodecEditor(editorFunc, codec, { startingValue, onChange, initialChange });
 
     // useEffect(() => {
     //     console.info('Editor changed: ', buffer);
@@ -88,5 +89,6 @@ export const Editor = (props: EditorProps) => {
     //     }
     // }, [buffer]);
 
-    return renderFunc();
+    // return renderFunc();
+    return res;
 };
