@@ -1,7 +1,9 @@
 
 import React from "react";
 
-import { Input, Stack } from "@mantine/core";
+import pick from 'lodash/pick';
+
+import { Input, ScrollArea, Stack } from "@mantine/core";
 import { completeCodec, stringNop } from "../conv/text/codecs/default";
 import { TextCodec } from "../conv/text/types";
 
@@ -11,6 +13,7 @@ import 'prismjs/themes/prism.css';
 import { GrammarToken, highlight, languages } from 'prismjs/components/prism-core';
 import { CopyActionButton } from "./CopyActionButton";
 import { GrammarRef, makeHighlight, toGrammar } from "../conv/text/util/highlighting";
+import max from '../../node_modules/lodash-es/max';
 
 
 const viewerDivStyles: React.CSSProperties = {
@@ -52,6 +55,8 @@ export type ViewProps = {
 
     codec?: TextCodec;
 
+    style?: React.CSSProperties;
+
     // highlightFunc?: (code: string) => string;
 
     // Prismjs options
@@ -67,6 +72,7 @@ export const Viewer = (props: ViewProps) => {
         grammar: grammarRef = 'text',
         language = 'text',
         codec = {},
+        style = {},
     } = props;
 
     const { decode } = completeCodec(codec);
@@ -76,29 +82,35 @@ export const Viewer = (props: ViewProps) => {
     const highlighted = highlightFunc(decoded);
     const highlightedContents = { __html: highlighted };
 
-    // const viewer = (
-    //     <pre className={`viewer prism-jsx languages-${language}`} style={viewerStyles} dangerouslySetInnerHTML={highlightedContents} />
-    // );
+    const scrollPropStyles = pick(style, ['minHeight', 'maxHeight', 'height']);
+    const prePropStyles = pick(style, ['whiteSpace', 'wordBreak', 'overflowWrap']);
+    
+    const preStyles = {
+        ...prePropStyles,
+        overflow: 'scroll',
+    };
+
+    const scrollStyles = {
+        maxHeight: '200px',
+        ...scrollPropStyles,
+        overflow: 'hidden scroll',
+        // Leave room for copy button
+        marginRight: '25px',
+    };
 
     const Highlighted = () => {
-        return <pre className={`viewer prism-jsx languages-${language}`} style={viewerStyles} dangerouslySetInnerHTML={highlightedContents} />;
+        return (
+            <div style={scrollStyles}>
+                <pre className={`viewer prism-jsx languages-${language}`} style={{...viewerStyles, ...preStyles}} dangerouslySetInnerHTML={highlightedContents} />
+            </div>
+        );
     };
 
     return (
         <Stack>
             <Input.Wrapper label={label}>
-                <Input component={Highlighted} style={viewerDivStyles} rightSection={<CopyActionButton value={decoded} />} />
+                <Input component={Highlighted} style={viewerDivStyles} rightSection={<CopyActionButton value={decoded} />} rightSectionPointerEvents="auto" />
             </Input.Wrapper>
         </Stack>
-    )
-
-    // return (
-    //     <Stack>
-    //         <Input.Wrapper label={label}>
-    //             <div style={viewerDivStyles}>
-    //                 <pre className={`viewer prism-jsx languages-${language}`} style={viewerStyles} dangerouslySetInnerHTML={highlightedContents} />
-    //             </div>
-    //         </Input.Wrapper>
-    //     </Stack>
-    // );
+    );
 };

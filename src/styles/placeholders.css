@@ -1,0 +1,26 @@
+
+.placeholderRect {
+    background-color: lightgray;
+    border: 1px solid darkgray;
+}
+
+.placeholderRect:hover {
+    background-color: darkgray;
+    border: 1px solid black;
+}
+
+@keyframes placeholderRectClicked {
+    0% {
+        background-color: darkgray;
+    }
+    50% {
+        background-color: white;
+    }
+    100% {
+        background-color: lightgray;
+    }
+}
+
+.placeholderRect.clicked {
+    animation: placeholderRectClicked 0.1s ease-in-out;
+}

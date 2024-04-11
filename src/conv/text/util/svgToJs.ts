@@ -56,7 +56,7 @@ const JSX_TEMPLATE = (contents: string) =>
 `
 import React from 'react';
 
-export const SvgComponent = (props) => {
+export const SvgComponent = () => {
     return (
         ${contents}
     );
@@ -66,7 +66,7 @@ const TSX_TEMPLATE = (contents: string) =>
 `
 import React from 'react';
 
-export const SvgComponent: React.FC = (props) => {
+export const SvgComponent: React.FC = () => {
     return (
         ${contents}
     );

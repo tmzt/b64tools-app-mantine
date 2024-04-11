@@ -12,7 +12,7 @@ import { Viewer } from '../components/Viewer';
 import { code } from '../../node_modules/mdast-util-to-hast/lib/handlers/code.d';
 import { CopyInput } from '../components/CopyInput';
 import { minimizeXml } from '../conv/text/util/minimize';
-import { toDataUri } from '../conv/text/codecs/svgToBase64';
+import { toSVGDataURI } from '../conv/text/util/svgDataURI';
 
 type OptionsFormProps<T> = { value: T; onChange: (value: T) => void; };
 
@@ -184,7 +184,7 @@ export const WavyTextPage = () => {
         const minimizedSvgValue = minimizeXml(gen);
         setMinimizedSvg(minimizedSvgValue);
 
-        const dataUriValue = toDataUri(minimizedSvgValue);
+        const dataUriValue = toSVGDataURI(minimizedSvgValue);
         setDataUri(dataUriValue);
     };
 
