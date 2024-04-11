@@ -1,7 +1,7 @@
 
 # b64.tools Collection License
 
-This website and it's contents and source code, with the exception of the dependencies mentioned below are under the (https://creativecommons.org/licenses/by-nc-sa/4.0/)[CC-BY-NC-SA-4.0] license:
+This website and it's contents and source code, with the exception of the dependencies mentioned below are under the [https://creativecommons.org/licenses/by-nc-sa/4.0/](CC-BY-NC-SA-4.0) license:
 
 Attribution-NonCommercial-ShareAlike 4.0 International
 

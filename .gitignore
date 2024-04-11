@@ -1,6 +1,8 @@
 
 /src/gen
 
+.*tsx
+
 # Logs
 logs
 *.log

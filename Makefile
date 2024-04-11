@@ -16,7 +16,14 @@ build:
 	APP_ENV=$(app_env) npm run build
 
 licenses:
-	@npm run licenses
+	@echo "Generating licenses"
+	@npm run dep-licenses
+	@mkdir -p ./src/gen
+	@cat ./src/content/License.header.md ./src/gen/dependencies.txt \
+		| sed 's/</\&lt;/g' \
+		| sed 's/>/\&gt;/g' \
+		| sed 's/@/\&commat;/g' \
+		> ./src/gen/licenses.md
 
 run-local:
 	APP_ENV=$(app_env) VITE_PORT=5178 npm run dev

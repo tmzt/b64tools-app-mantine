@@ -11,7 +11,7 @@
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./src",
     "format": "prettier --write ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "licenses": "mkdir -p src/gen && generate-license-file --ci --input package.json --output src/gen/dependencies.md --overwrite && cat src/gen/dependencies src/content/License.header.md > src/gen/licenses.md"
+    "dep-licenses": "mkdir -p src/gen && generate-license-file --ci --input package.json --output src/gen/dependencies.txt --overwrite"
   },
   "author": "Timothy Meade",
   "license": "CC-BY-NC-SA-4.0",
