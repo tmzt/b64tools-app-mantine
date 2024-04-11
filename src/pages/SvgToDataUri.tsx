@@ -71,11 +71,11 @@ export const SvgToDataURI = () => {
             </Stack>
 
             <Stack>
-                <TextInput readOnly disabled label="Minimized SVG:" value={minimizedSvg} />
+                <CopyInput readOnly disabled label="Minimized SVG:" value={minimizedSvg} />
             </Stack>
 
             <Stack>
-                <Editor label="SVG:" codec={codec} defaultValue={defaultSvg} highlight={highlightSvg} onChange={onChange} styles={{ minHeight: '15rem' }} />
+                <Editor label="SVG:" codec={codec} defaultValue={defaultSvg} highlight={highlightSvg} onChange={onChange} styles={{ maxHeight: '200px' }} />
             </Stack>
 
             {/* Below the fold conversions */}

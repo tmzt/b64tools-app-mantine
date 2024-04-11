@@ -1,11 +1,16 @@
 
-# The base64.io tools collection
+# The b64.tools collection
 
+Welcome to the <em>b64.tools</em> collection. This site has tools to help you convert Data URIs to and from images and svg files.
 
-## SVG and Image to Data URI
+More tools are coming soon, so check back often.
+
+## Tools for working with Data URIs
 
 - [SVG to Data URI](/svg-to-data-uri)
 - [Image to Data URI](/image-to-data-uri)
+- [Data URI to Image](/data-uri-to-image)
+- [Anaylze Data URI](/analyze-data-uri)
 
 ## Wavy text
 
@@ -13,11 +18,11 @@ Like our logo? It's built using an SVG filter.
 
 Get your own wavy text here:
 
-    https://base64.io/wavy/{text}
+    https://b64.tools/wavy/{text}
 
 For custom colors, use this format:
 
-    https://base64.io/wavy/fill={color}/highlight1={color}/highlight2={color}/{text}
+    https://b64.tools/wavy/fill={color}/highlight1={color}/highlight2={color}/{text}
 
 
 More options are here:
@@ -30,8 +35,8 @@ This is an easy way to create an image of a certain size.
 
 Just use the following URL format:
 
-    https://base64.io/placeholder/{width}/{height}
+    https://b64.tools/placeholder/{width}/{height}/{fillColor}/{outlineColor}/{textColor}
 
 You can browse more customization options here:
 
-- [Placeholder images](/placeholder-images)
+- [Placeholder images](/placeholders)

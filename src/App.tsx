@@ -16,7 +16,7 @@ import { Root } from './pages/Root';
 import { SvgToDataURI } from './pages/SvgToDataURI';
 import { WavyTextPage } from './pages/WavyText';
 
-import { Base64IOLogo } from './components/Logo';
+import { B64ToolsLogo } from './components/Logo';
 
 import { ContentSwitch } from './content/Switch';
 
@@ -46,7 +46,7 @@ export const Layout = () => {
           <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
           {/* <MantineLogo size={30} /> */}
           <Link to="/">
-            <Base64IOLogo style={logoStyle} />
+            <B64ToolsLogo style={logoStyle} />
           </Link>
         </Group>
       </AppShell.Header>

@@ -17,9 +17,11 @@ const isProd = APP_ENV === 'prod';
 
 const baseHref = () => {
     if (APP_ENV == 'prod') {
-        return 'https://base64.io';
+        return 'https://b64.tools';
     } else if (APP_ENV == 'beta') {
-        return 'https://beta.base64.io';
+        // There is only PROD
+        return 'https://b64.tools';
+        // return 'https://beta.b64.tools';
     } else {
         return `http://localhost:${VITE_PORT}`;
     }

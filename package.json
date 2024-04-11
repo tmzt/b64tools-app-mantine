@@ -1,5 +1,5 @@
 {
-  "name": "base64io-app-mantine",
+  "name": "b64tools-app-mantine",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,10 +11,10 @@
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx ./src",
     "format": "prettier --write ./src",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "licenses": "mkdir -p src/gen && generate-license-file --ci --input package.json --output src/gen/licenses.md --overwrite && sed -i '' '1s/^/\\n\\n\\n# Dependencies\\n\\n/' src/gen/licenses.md"
+    "licenses": "mkdir -p src/gen && generate-license-file --ci --input package.json --output src/gen/dependencies.md --overwrite && cat src/gen/dependencies src/content/License.header.md > src/gen/licenses.md"
   },
   "author": "Timothy Meade",
-  "license": "All Rights Reserved",
+  "license": "CC-BY-NC-SA-4.0",
   "devDependencies": {
     "@cyco130/vite-plugin-mdx": "^1.0.4",
     "@heroicons/react": "^2.1.3",

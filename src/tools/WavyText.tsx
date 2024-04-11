@@ -1,5 +1,6 @@
 
 import React from "react";
+import { baseHref } from "../consts";
 
 
 export type WavyTextOptions = {
@@ -67,6 +68,58 @@ export const wavyTextDefaults = (): WavyTextOptions => ({
     highlight1: '#339af0',
     highlight2: '#b9c1c7',
 });
+
+export type WavyTextOptionsRequired = Required<WavyTextOptions>;
+
+export const withWavyTextDefaults = (options: WavyTextOptions): WavyTextOptionsRequired => {
+    const merged = {
+        ...wavyTextDefaults(),
+        ...options,
+    };
+
+    return merged as WavyTextOptionsRequired;
+};
+
+export const makeWavyTextLiveUri = (options: WavyTextOptions): string => {
+    // const withDefaults = withWavyTextDefaults(options);
+    // const { text, size, fontSize, fill, stroke, sw, highlight1, highlight2 } = withDefaults;
+
+    // let parts = [
+    //     `size=${encodeURIComponent(size)}`,
+    //     `fontSize=${encodeURIComponent(fontSize)}`,
+    //     `fill=${encodeURIComponent(fill)}`,
+    //     `stroke=${encodeURIComponent(stroke)}`,
+    //     `sw=${encodeURIComponent(sw)}`,
+    //     `highlight1=${encodeURIComponent(highlight1)}`,
+    //     `highlight2=${encodeURIComponent(highlight2)}`,
+    // ];
+
+    const defaults = wavyTextDefaults();
+
+    const isDefault = (key: string, value: any) => {
+        return defaults[key] === value;
+    };
+
+    let parts = Object.entries(options).map(([key, value]) => {
+        if ('undefined' !== typeof value && null !== value && key !== 'text' && !isDefault(key, value)) {
+            return `${key}=${encodeURIComponent(`${value}`)}`;
+        } else {
+            return null;
+        }
+    }).filter((part) => part !== null);
+
+    const optionsPart = parts.join('/');
+
+    const { text = 'Hello, World!' } = options;
+
+    const uri = [`${baseHref}/wavy`, optionsPart, encodeURIComponent(text)]
+        .filter((part) => part?.length)
+        .join('/');
+
+    return uri;
+
+    // return `${baseHref}/wavy/${optionsPart}/${encodeURIComponent(text)}`;
+};
 
 const makeTextStyles = (props: WavyTextProps): React.CSSProperties => {
     const { size = 300, fontSize = 16, sw = DEFAULT_STROKE_WIDTH, fill = "#339af0", stroke = "#b3b3b3", highlight1 = "" } = props;
